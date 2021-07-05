@@ -1,0 +1,42 @@
+.commentsBlock{
+    margin: 0 20px;
+}
+
+.commentItem{
+    position: relative;
+    background-color: rgb(247, 247, 247);
+    padding: 15px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.form{
+    margin-bottom: 20px;
+}
+
+.textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    font-size: 18px;
+   }
+
+
+.btn{
+    padding: 7px 25px;
+    font-size: 24px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+    margin: 10px 10px 10px 0;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #dfdfdf;
+}

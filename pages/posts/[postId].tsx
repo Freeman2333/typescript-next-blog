@@ -1,25 +1,26 @@
 import axios from "axios";
-import { GetStaticPaths } from "next";
+import  PostWithComments  from "../../components/PostWithComments";
 import MainLayout from "../../components/layouts/MainLayout";
 import Post from '../../components/Post';
-import { IPost } from "../../typescript/posts";
+import { IPostWithComments } from "../../typescript/posts";
 
 type postIdProps = {
-    post: IPost
+    post: IPostWithComments
 }
 
 export default function postId({ post }: postIdProps) {
     return (
         <MainLayout>
-            <h1>{post.title}</h1>
+            <h1 style={{marginLeft: '20px'}}>{post.title}</h1>
             <Post post={post} />
+            <PostWithComments post={post}/>
         </MainLayout>
     )
 }
 
 export async function getStaticPaths() {
 
-    const listOfPosts: IPost[] = await axios.get('https://simple-blog-api.crew.red/posts')
+    const listOfPosts: IPostWithComments[] = await axios.get('https://simple-blog-api.crew.red/posts')
         .then((res) => res.data);
 
     const paths = listOfPosts.map((post) => ({
@@ -33,7 +34,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const post: IPost = await axios.get(`https://simple-blog-api.crew.red/posts/${params.postId}`)
+    const post: IPostWithComments = await axios.get(`https://simple-blog-api.crew.red/posts/${params.postId}?_embed=comments`)
         .then((res) => res.data);
     return {
         props: { post },

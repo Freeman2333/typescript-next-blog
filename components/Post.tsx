@@ -2,10 +2,10 @@ import style from '../styles/Post.module.css';
 import Link from 'next/link';
 import {useRouter} from "next/router";
 import axios from "axios";
-import { IPost } from '../typescript/posts';
+import { IPostWithComments } from '../typescript/posts';
 import { AiFillDelete } from 'react-icons/ai';
 type Props = {
-    post: IPost
+    post: IPostWithComments
 }
 
 function Post({ post }: Props) {

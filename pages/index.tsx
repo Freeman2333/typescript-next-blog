@@ -2,10 +2,10 @@ import styles from '../styles/Home.module.css'
 import MainLayout from '../components/layouts/MainLayout'
 import axios from 'axios';
 import Post from '../components/Post';
-import { IPost } from '../typescript/posts';
+import { IPostWithComments } from '../typescript/posts';
 
 type Props = {
-  posts: IPost[]
+  posts: IPostWithComments[]
 }
 
 export default function Home({ posts }: Props) {
@@ -26,7 +26,7 @@ export default function Home({ posts }: Props) {
 
 export async function getServerSideProps() {
 
-  const posts: IPost[] = await axios.get('https://simple-blog-api.crew.red/posts')
+  const posts: IPostWithComments[] = await axios.get('https://simple-blog-api.crew.red/posts')
     .then((res) => res.data);
 
   return {
