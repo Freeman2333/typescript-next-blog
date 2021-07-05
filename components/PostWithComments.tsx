@@ -1,4 +1,4 @@
-import  {useState} from 'react';
+import  {useState, MouseEvent,ChangeEvent} from 'react';
 import {IPostWithComments} from "../typescript/posts";
 import axios from "axios";
 import {useRouter} from "next/router";
@@ -13,7 +13,7 @@ const PostWithComments = ({post}:PostItemProps) => {
     const postId = query.postId
     const [commentBody, setcommentBody] = useState('')
     
-    const addComment = async (e) => {
+    const addComment = async (e:MouseEvent) => {
         e.preventDefault()
         try {
             const response = await axios.post('https://simple-blog-api.crew.red/comments', {
@@ -27,13 +27,17 @@ const PostWithComments = ({post}:PostItemProps) => {
         }
     }
 
+    const handleChangeBody = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setcommentBody(e.target.value)
+    }
+
 
     return (
         <div className={style.commentsBlock}>
             <h2 style={{marginTop: 20}}>Comments:</h2>
 
             <form className={style.form}>
-                <div><textarea value={commentBody}  className={style.textarea} onChange={e=>setcommentBody(e.target.value)} required placeholder='Comment...' /></div>
+                <div><textarea value={commentBody}  className={style.textarea} onChange={handleChangeBody} required placeholder='Comment...' /></div>
                 <button  className={style.btn} onClick={addComment}>Send</button>
             </form>
             <div className={style.commentsContainer}>
