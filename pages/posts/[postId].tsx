@@ -17,7 +17,7 @@ export default function postId({ post }: postIdProps) {
     )
 }
 
-export async function getStaticPaths(context: GetStaticPaths) {
+export async function getStaticPaths() {
 
     const listOfPosts: IPost[] = await axios.get('https://simple-blog-api.crew.red/posts')
         .then((res) => res.data);
